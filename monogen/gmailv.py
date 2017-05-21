@@ -34,7 +34,7 @@ def proc_mail(M):
                         validate_response = "Failed"
                         while(validate_response == "Failed"):
                             validate_response = activateurl(validlink)
-                        print("Verified email and trashing Email with key: " + validlink[60:] + "\n")
+                        print(("Verified email and trashing Email with key: " + validlink[60:] + "\n"))
                         M.store(num,'+X-GM-LABELS', '\\Trash')
                     except Exception:
                         print("Unable to verify email.\n")
@@ -47,7 +47,7 @@ def email_verify(plusmail, googlepass):
     M = imaplib.IMAP4_SSL('imap.gmail.com')    
     try:
         M.login(email_address, googlepass)
-        print("Logged in to: " + email_address)
+        print(("Logged in to: " + email_address))
 
         rv, mailboxes = M.list()
         rv, data = M.select("INBOX")
@@ -57,4 +57,4 @@ def email_verify(plusmail, googlepass):
             M.close()
         M.logout()
     except imaplib.IMAP4.error:
-        print("Unable to login to: " + email_address + ". Was not verified\n")
+        print(("Unable to login to: " + email_address + ". Was not verified\n"))

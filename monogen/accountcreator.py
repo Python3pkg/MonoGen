@@ -72,9 +72,9 @@ def _validate_username(driver, username):
         response_data = response.json()
 
         if response_data['valid'] and not response_data['inuse']:
-            print("User '{}' is available, proceeding...".format(username))
+            print(("User '{}' is available, proceeding...".format(username)))
         else:
-            print("User '{}' is already in use.".format(username))
+            print(("User '{}' is already in use.".format(username)))
             driver.quit()
             raise PTCInvalidNameException("User '{}' is already in use.".format(username))
     except Exception:
@@ -85,7 +85,7 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
     if password:
         _validate_password(password)
 
-    print("Attempting to create user {user}:{pw}. Opening browser...".format(user=username, pw=password))
+    print(("Attempting to create user {user}:{pw}. Opening browser...".format(user=username, pw=password)))
     if captchakey2:
         dcap = dict(DesiredCapabilities.PHANTOMJS)
         dcap["phantomjs.page.settings.userAgent"] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36'
@@ -95,7 +95,7 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
         driver.set_window_size(600, 600)
 
     # Input age: 1992-01-08
-    print("Step 1: Verifying age using birthday:", birthday)
+    print(("Step 1: Verifying age using birthday:", birthday))
     driver.get("{}/sign-up/".format(BASE_URL))
     assert driver.current_url == "{}/sign-up/".format(BASE_URL)
     elem = driver.find_element_by_name("dob")
@@ -187,7 +187,7 @@ def create_account(username, password, email, birthday, captchakey2, captchatime
     try:
         _validate_response(driver)
     except Exception:
-        print("Failed to create user:", username)
+        print(("Failed to create user:", username))
         driver.quit()
         raise
 

@@ -116,7 +116,7 @@ def _verify_settings(settings):
         try:
             verification(settings)
         except PTCException as e:
-            print(e.message)
+            print((e.message))
             print("Terminating.")
             sys.exit()
     return True
@@ -167,7 +167,7 @@ def entry():
 
     if _verify_settings({'args':args, 'balance':captchabal}):
         for x in range(args.count):
-            print("Making account #{}".format(x + 1))
+            print(("Making account #{}".format(x + 1)))
             if args.username is not None and args.count != 1 and args.inputtext is None:
                 if args.startnum is None:
                     username = '{}{}'.format(args.username, x + 1)
@@ -181,9 +181,9 @@ def entry():
                 try:
                     account_info = random_account(args.email, username, args.password, args.birthday, args.plusmail, args.recaptcha, args.captchatimeout)
                     
-                    print('  Username:  {}'.format(account_info["username"]))
-                    print('  Password:  {}'.format(account_info["password"]))
-                    print('  Email   :  {}'.format(account_info["email"]))
+                    print(('  Username:  {}'.format(account_info["username"])))
+                    print(('  Password:  {}'.format(account_info["password"])))
+                    print(('  Email   :  {}'.format(account_info["email"])))
 
                     # Verify email
                     if (args.googlepass is not None):
